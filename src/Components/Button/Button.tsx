@@ -9,6 +9,12 @@
   1. ClassNames
   2. Types
   3. Danger
+  4. Title
+  5. Block
+  6. Disabled
+  7. Shape
+  8. onClick
+  9. href
 
 
   Note: 
@@ -26,6 +32,7 @@ const Button = ({
   disabled,
   shape,
   onClick,
+  href,
 }: ButtonProps) => {
   const buttonType = () => {
     if (type === "primary") {
@@ -39,7 +46,7 @@ const Button = ({
 
   const buttonDanger = () => {
     if (type === "primary" && danger) {
-      return "bg-red-600";
+      return "bg-red-600 text-white";
     } else if (type === "default" && danger) {
       return "text-red-600 border-red-600";
     } else if (type === "dashed" && danger) {
@@ -66,12 +73,26 @@ const Button = ({
   };
 
   return (
-    <div
-      onClick={buttondisabled() ? undefined : onClick}
-      className={`${className} ${buttonType()} ${buttonDanger()} ${buttonBlock()} ${buttondisabled()} ${buttonShape()} px-5 rounded text-black`}
-    >
-      {title}
-    </div>
+    <>
+      {href && (
+        <a href={href} target="_blank" rel="noreferrer">
+          <div
+            onClick={buttondisabled() ? undefined : onClick}
+            className={`${className} ${buttonType()} ${buttonDanger()} ${buttonBlock()} ${buttondisabled()} ${buttonShape()} px-5 rounded`}
+          >
+            {title}
+          </div>
+        </a>
+      )}
+      {!href && (
+        <div
+          onClick={buttondisabled() ? undefined : onClick}
+          className={`${className} ${buttonType()} ${buttonDanger()} ${buttonBlock()} ${buttondisabled()} ${buttonShape()} px-5 rounded `}
+        >
+          {title}
+        </div>
+      )}
+    </>
   );
 };
 
