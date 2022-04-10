@@ -15,7 +15,7 @@
   1. Danger will only work if the type is defined
 */
 
-import { ButtonProps } from "../Interfaces/ButtonProps";
+import { ButtonProps } from "../../Interfaces/ButtonProps";
 
 const Button = ({
   className,
